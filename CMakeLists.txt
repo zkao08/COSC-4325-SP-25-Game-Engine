@@ -9,18 +9,25 @@ include(FetchContent)
 # Add subdirectories for each of the libraries
 add_subdirectory(third_party_libs/openal-soft)
 add_subdirectory(third_party_libs/bgfx)
-add_subdirectory(third_party_libs/imgui)
 add_subdirectory(third_party_libs/box2d)
 add_subdirectory(third_party_libs/sdl)
 
+# Specify the path to the ImGui source files (assuming they're located in third_party_libs/imgui)
+set(IMGUI_DIR "third_party_libs/imgui")
+
+# Add ImGui source files manually
+file(GLOB IMGUI_SRC
+    "${IMGUI_DIR}/imgui*.cpp"
+)
+
 # Create the main game engine executable
-add_executable(GameEngine src/main.cpp)
+add_executable(GameEngine src/main.cpp ${IMGUI_SRC})
 
 # Include directories for each library
 target_include_directories(GameEngine PRIVATE
     third_party_libs/openal-soft/include
     third_party_libs/bgfx/include
-    third_party_libs/imgui
+    ${IMGUI_DIR}  # Include the ImGui directory
     third_party_libs/box2d
     third_party_libs/sdl/include
 )
@@ -29,11 +36,11 @@ target_include_directories(GameEngine PRIVATE
 target_link_libraries(GameEngine PRIVATE 
     OpenAL
     bgfx
-    imgui
+    imgui  # imgui will be included directly as source files, so this isn't necessary anymore
     box2d
     SDL2
 )
 
 # If you need to link OpenGL (for bgfx)
-find_package(OpenGL REQUIRED)
-target_link_libraries(GameEngine PRIVATE OpenGL::GL)
+#find_package(OpenGL REQUIRED)
+#target_link_libraries(GameEngine PRIVATE OpenGL::GL)

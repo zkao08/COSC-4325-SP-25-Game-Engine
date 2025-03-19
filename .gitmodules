@@ -1,9 +1,6 @@
 [submodule "third_party_libs/openal-soft"]
 	path = third_party_libs/openal-soft
 	url = https://github.com/kcat/openal-soft
-[submodule "third_party_libs/bgfx"]
-	path = third_party_libs/bgfx
-	url = https://github.com/bkaradzic/bgfx
 [submodule "third_party_libs/imgui"]
 	path = third_party_libs/imgui
 	url = https://github.com/ocornut/imgui
@@ -13,3 +10,6 @@
 [submodule "third_party_libs/sdl"]
 	path = third_party_libs/sdl
 	url = https://github.com/libsdl-org/SDL
+[submodule "third_party_libs/bgfx"]
+	path = third_party_libs/bgfx
+	url = https://github.com/bkaradzic/bgfx.cmake
